@@ -1,10 +1,11 @@
 #-----------------------------------------------------------------------------
 #								Imports
-import sv_ttk
-from time import time, sleep, gmtime, strftime, localtime
-from tkinter.ttk import Button as ttkButton
-from tkinter import Tk, Canvas, Label, Button, LabelFrame
 import plyer
+import sv_ttk
+from pygame import mixer
+from tkinter.ttk import Button as ttkButton
+from time import time, sleep, gmtime, strftime, localtime
+from tkinter import Tk, Canvas, Label, Button, LabelFrame
 
 import sys
 import os
@@ -19,6 +20,9 @@ def resource_path(relative_path):
 
 plyer_path = resource_path("plyer")
 sys.path.append(plyer_path)
+
+sound_path = resource_path(r'D:\VS CODE\timer\assets\frame0\sound.wav')
+
 
 
 #-----------------------------------------------------------------------------
@@ -40,6 +44,10 @@ class MainWindow:
         self.about_window = None        
         self.start_time = 0
         self.enable_timer = False
+
+        
+        mixer.init()
+        mixer.music.load(sound_path)
 
         self.place_items()
         self.theme()    
@@ -100,6 +108,7 @@ class MainWindow:
     def alert(self, status_label_text= None, title= "test", message= "test"):
         self.status_label.config(text=status_label_text)
         plyer.notification.notify(title= title, message= message)
+        mixer.music.play()
 
 
     def update(self, status_label_text, start_stop_button_text, time_label_text= None):
@@ -182,7 +191,7 @@ class AboutWindow(MainWindow):
         self.frame = LabelFrame(self.about, text="About")
         self.frame.pack(expand='yes', fill='both',padx=15,pady=15)
 
-        self.credit = Label(self.frame,font=("Calibri",13),text='\nMade by Atharva Baradkar \n Using:\n Figma, Tkinter\nSun Valley Theme\n\n\n\n\n version "tester"')
+        self.credit = Label(self.frame,font=("Calibri",13),text='\nMade by Atharva Baradkar \n Using:\n Figma, Tkinter\nSun Valley Theme\n\n\n\n\n version "0.2.0"')
         self.credit.pack()
 
 
