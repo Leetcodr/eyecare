@@ -23,8 +23,6 @@ sys.path.append(plyer_path)
 
 sound_path = resource_path(r'D:\VS CODE\timer\assets\frame0\sound.wav')
 
-
-
 #-----------------------------------------------------------------------------
 #								MainWindow
 class MainWindow:
@@ -191,7 +189,7 @@ class AboutWindow(MainWindow):
         self.frame = LabelFrame(self.about, text="About")
         self.frame.pack(expand='yes', fill='both',padx=15,pady=15)
 
-        self.credit = Label(self.frame,font=("Calibri",13),text='\nMade by Atharva Baradkar \n Using:\n Figma, Tkinter\nSun Valley Theme\n\n\n\n\n version "0.2.0"')
+        self.credit = Label(self.frame,font=("Calibri",13),text='\nMade by Atharva Baradkar \n Using:\n Figma, Tkinter\nSun Valley Theme\n\n\n\n\n version: v2.0.0')
         self.credit.pack()
 
 
