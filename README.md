@@ -1,7 +1,7 @@
 # Eyecare
 Your solution to maintain optimal eye health while maximizing productivity📈 
 
-Leading Medical Professionals recommend to look at an object 20 ft. away for 20 seconds, for every 20 minutes of work to prevent the effects of eye strain🧐. This App automates the process in the form of timely reminders⏱️
+Leading Medical Professionals recommend to look at an object 20 ft. away for 20 seconds, for every 20 minutes of work to prevent the effects of eye strain🧐. This App automates the process in the form of a timely reminder⏱️
   
   Key Features:
 *  Reminder to take breaks in the form of a System Notification🔔 
@@ -47,4 +47,4 @@ Replace:
 *  Replace $SOUND_PATH with Absoulte path of the 'sound.wav' file
 *  Replace $SCRIPT_PATH with Absolute path of the 'eyecare.py' file
 ## Disclaimer
-When using our eye health app, it's important to note that while it is a tool for assistance, however currently it is not medically certified or recommended by health care professionals. This app serves as a general wellness tool and is not a replacement for professional eye care. Please use this app responsibly, understanding its limitations and intended purpose.
+When using our eye health app, it's important to note that while it is a tool for assistance, currently it is not medically certified or recommended by health care professionals. This app serves as a general wellness tool and is not a replacement for professional eye care. Please use this app responsibly, understanding its limitations and intended purpose.
