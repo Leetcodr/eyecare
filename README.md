@@ -1,4 +1,4 @@
-# Eyecare- Optimise your Eye Health👀
+# Eyecare
 Your solution to maintain optimal eye health while maximizing productivity📈 
 
 Leading Medical Professionals recommend to look at an object 20 ft. away for 20 seconds, for every 20 minutes of work to prevent the effects of eye strain🧐. This App automates the process in the form of timely reminders⏱️
@@ -10,13 +10,13 @@ Leading Medical Professionals recommend to look at an object 20 ft. away for 20 
 
 ## Screenshots
 App opened in Light Mode:  
-<img src="/assets/Screenshot 2024-05-28 100102.png" alt="Image 1" width=40%>  
+<img src="/assets/Screenshot 2024-05-28 100102.png" alt="Image 1" width=50%>  
 App opened in Dark Mode:  
-<img src="/assets/Screenshot 2024-05-28 100045.png" alt="Image 2" width=40%>  
+<img src="/assets/Screenshot 2024-05-28 100045.png" alt="Image 2" width=50%>  
 About Page:  
-<img src="/assets/Screenshot 2024-05-28 100149.png" alt="Image 3" width=40%>  
+<img src="/assets/Screenshot 2024-05-28 100149.png" alt="Image 3" width=50%>  
 Example of System Notification:  
-<img src="assets/Screenshot 2024-05-28 100218.png" alt="Image 4" width=40%>  
+<img src="assets/Screenshot 2024-05-28 100218.png" alt="Image 4" width=50%>  
 
 
 ## Download
@@ -47,4 +47,4 @@ Replace:
 *  Replace $SOUND_PATH with Absoulte path of the 'sound.wav' file
 *  Replace $SCRIPT_PATH with Absolute path of the 'eyecare.py' file
 ## Disclaimer
-When installing our eye health app, it's important to note that while it is a tool for assistance, however currently it is not medically certified or recommended by health care professionals. This app serves as a general wellness tool and is not a replacement for professional eye care. Please use this app responsibly, understanding its limitations and intended purpose.
+When using our eye health app, it's important to note that while it is a tool for assistance, however currently it is not medically certified or recommended by health care professionals. This app serves as a general wellness tool and is not a replacement for professional eye care. Please use this app responsibly, understanding its limitations and intended purpose.
