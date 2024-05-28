@@ -1,27 +1,31 @@
 #-----------------------------------------------------------------------------
 #								Imports
-import plyer
 import sv_ttk
-from pygame import mixer
 from tkinter.ttk import Button as ttkButton
 from time import time, sleep, gmtime, strftime, localtime
 from tkinter import Tk, Canvas, Label, Button, LabelFrame
+import plyer
+from pygame import mixer
 
 import sys
 import os
 
+# https://stackoverflow.com/questions/31836104/pyinstaller-and-onefile-how-to-include-an-image-in-the-exe-file
 def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS
+        print(base_path, "try")
     except Exception:
         base_path = os.path.abspath(".")
-
-    return os.path.join(base_path, relative_path)
+        print(base_path, "except")
+    path = os.path.join(base_path, relative_path)
+    print(path)
+    return path
 
 plyer_path = resource_path("plyer")
 sys.path.append(plyer_path)
 
-sound_path = resource_path(r'D:\VS CODE\timer\assets\frame0\sound.wav')
+sound_path = resource_path('sound.wav')
 
 #-----------------------------------------------------------------------------
 #								MainWindow
