@@ -118,7 +118,7 @@ class MainWindow:
 
 
     def log(self, text= "", end= "\n"):
-        print(strftime("%H:%M:%S", localtime()), text, end= end)
+        print(strftime("%I:%M:%S %p", localtime()), text, end= end)
 
 
     def control(self):
