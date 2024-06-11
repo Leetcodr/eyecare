@@ -14,12 +14,9 @@ import os
 def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS
-        print(base_path, "try")
     except Exception:
         base_path = os.path.abspath(".")
-        print(base_path, "except")
     path = os.path.join(base_path, relative_path)
-    print(path)
     return path
 
 plyer_path = resource_path("plyer")
