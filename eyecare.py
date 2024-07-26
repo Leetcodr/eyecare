@@ -5,7 +5,7 @@ from tkinter.ttk import Button as ttkButton
 from time import time, sleep, gmtime, strftime, localtime
 from tkinter import Tk, Canvas, Label, Button, LabelFrame
 import plyer
-from pygame import mixer
+from playsound import playsound
 
 import sys
 import os
@@ -22,7 +22,7 @@ def resource_path(relative_path):
 plyer_path = resource_path("plyer")
 sys.path.append(plyer_path)
 
-sound_path = resource_path('sound.wav')
+sound_path = resource_path(r'assets\sound.wav')
 
 #-----------------------------------------------------------------------------
 #								MainWindow
@@ -43,10 +43,6 @@ class MainWindow:
         self.about_window = None        
         self.start_time = 0
         self.enable_timer = False
-
-        
-        mixer.init()
-        mixer.music.load(sound_path)
 
         self.place_items()
         self.theme()    
@@ -107,7 +103,7 @@ class MainWindow:
     def alert(self, status_label_text= None, title= "test", message= "test"):
         self.status_label.config(text=status_label_text)
         plyer.notification.notify(title= title, message= message)
-        mixer.music.play()
+        playsound(sound_path)
 
 
     def update(self, status_label_text, start_stop_button_text, time_label_text= None):
