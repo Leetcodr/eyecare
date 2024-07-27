@@ -150,10 +150,11 @@ class MainWindow:
                 self.input_info = win32api.GetLastInputInfo()
 
         elif elapsed_time == begin_outside:
+            if self.input_info == win32api.GetLastInputInfo():  # if user is inactive
+                self.control()
             sleep(0.5)                 # wait time to avoid alerts twice
             self.log(end=" - ")
-            if self.input_info != (win32api.GetLastInputInfo()):  # if user is active
-                self.alert(status_label_text="Look Outside", title="Look Outside!", message="eyecare")
+            self.alert(status_label_text="Look Outside", title="Look Outside!", message="eyecare")
 
         elif elapsed_time > begin_outside and elapsed_time < end_outside:
             self.time_label.config(text="00:20:00")
