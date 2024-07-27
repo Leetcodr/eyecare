@@ -1,11 +1,12 @@
 #-----------------------------------------------------------------------------
 #								Imports
-import sv_ttk
-from tkinter.ttk import Button as ttkButton
 from time import time, sleep, gmtime, strftime, localtime
 from tkinter import Tk, Canvas, Label, Button, LabelFrame
-import plyer
+from tkinter.ttk import Button as ttkButton
 from playsound import playsound
+import win32api
+import sv_ttk
+import plyer
 
 import sys
 import os
@@ -43,6 +44,7 @@ class MainWindow:
         self.about_window = None        
         self.start_time = 0
         self.enable_timer = False
+        self.input_info = None
 
         self.place_items()
         self.theme()    
@@ -135,8 +137,8 @@ class MainWindow:
             return
 
         now = time()
-        begin_outside = 1200    #1200 is no. of seconds in 20 minutes
-        end_outside = 1222      #1222 is 1200 sec + 20 sec break + 2 sec reaction time
+        begin_outside = 1200     #1200 is no. of seconds in 20 minutes
+        end_outside = 1222     #1222 is 1200 sec + 20 sec break + 2 sec reaction time
         elapsed_time = int(now - self.start_time)
 
         if not self.start_time:
@@ -144,19 +146,23 @@ class MainWindow:
 
         if elapsed_time < begin_outside:
             self.time_label.config(text= strftime("%H:%M:%S", gmtime(self.start_time+begin_outside-now)))
+            if elapsed_time == (begin_outside - 120):   # get user info 2 minutes before 
+                self.input_info = win32api.GetLastInputInfo()
 
         elif elapsed_time == begin_outside:
             sleep(0.5)                 # wait time to avoid alerts twice
-            self.alert(status_label_text="Look Outside", title="Look Outside!", message="eyecare")
             self.log(end=" - ")
+            if self.input_info != (win32api.GetLastInputInfo()):  # if user is active
+                self.alert(status_label_text="Look Outside", title="Look Outside!", message="eyecare")
 
         elif elapsed_time > begin_outside and elapsed_time < end_outside:
             self.time_label.config(text="00:20:00")
 
         elif elapsed_time == end_outside:
             self.start_time = now    # reset time
-            self.alert(status_label_text="Started", title="Back to Work..", message="eyecare")
             self.log(text="\t-Break")
+            if self.input_info != (win32api.GetLastInputInfo()):    # if user is active
+                self.alert(status_label_text="Started", title="Back to Work..", message="eyecare")
         
         self.time_label.after(500,self.get_time)
 
