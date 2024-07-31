@@ -3,7 +3,7 @@
 from time import time, sleep, gmtime, strftime, localtime
 from tkinter import Tk, Canvas, Label, Button, LabelFrame
 from tkinter.ttk import Button as ttkButton
-from playsound import playsound
+from pygame import mixer
 import win32api
 import sv_ttk
 import plyer
@@ -39,6 +39,9 @@ class MainWindow:
         self.dark = "#212121"
         self.light_text = "#3A3A3A"
         self.dark_text = "#CCCCCC"
+
+        mixer.init()
+        mixer.music.load(sound_path)
 
         self.current_theme = "light"    
         self.about_window = None        
@@ -105,7 +108,7 @@ class MainWindow:
     def alert(self, status_label_text= None, title= "test", message= "test"):
         self.status_label.config(text=status_label_text)
         plyer.notification.notify(title= title, message= message)
-        playsound(sound_path)
+        mixer.music.play()
 
 
     def update(self, status_label_text, start_stop_button_text, time_label_text= None):
