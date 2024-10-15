@@ -23,7 +23,10 @@ def resource_path(relative_path):
 plyer_path = resource_path("plyer")
 sys.path.append(plyer_path)
 
-sound_path = resource_path(r'assets\sound.wav')
+if getattr(sys, 'frozen', False): # if the code isn't running as a "frozen" state (exe)
+    sound_path = resource_path('sound.wav') # for running as an exe
+else: # code running for testing
+    sound_path = resource_path('assets/sound.wav') # for running while in dev
 
 #-----------------------------------------------------------------------------
 #								MainWindow
