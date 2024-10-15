@@ -7,7 +7,6 @@ from pygame import mixer
 import win32api
 import sv_ttk
 import plyer
-
 import sys
 import os
 
@@ -53,7 +52,8 @@ class MainWindow:
         self.input_info = None
 
         self.place_items()
-        self.theme()    
+        self.theme()
+        self.control()
         self.window.mainloop()
     
 
@@ -142,17 +142,19 @@ class MainWindow:
         if not self.enable_timer :
             return
 
-        now = time()
-        begin_outside = 1200     #1200 is no. of seconds in 20 minutes
-        end_outside = 1222     #1222 is 1200 sec + 20 sec break + 2 sec reaction time
+        now = time() 
+        begin_outside = 1200    # 1200 is no. of seconds in 20 minutes
+        end_outside = 1222      # 1222 is 1200 sec + 20 sec break + 2 sec reaction time
+        get_info_before = 2     # get user info 2 second before
         elapsed_time = int(now - self.start_time)
 
-        if not self.start_time:
+        # fix start_time
+        if not self.start_time: 
             self.start_time = now
 
         if elapsed_time < begin_outside:
             self.time_label.config(text= strftime("%H:%M:%S", gmtime(self.start_time+begin_outside-now)))
-            if elapsed_time == (begin_outside - 120):   # get user info 2 minutes before 
+            if elapsed_time == (begin_outside - get_info_before):
                 self.input_info = win32api.GetLastInputInfo()
 
         elif elapsed_time == begin_outside:
@@ -160,6 +162,9 @@ class MainWindow:
             self.log(end=" - ")
             if self.input_info != (win32api.GetLastInputInfo()):  # if user is active
                 self.alert(status_label_text="Look Outside", title="Look Outside!", message="eyecare")
+            else: # if inactive, stop timer
+                self.control()
+                self.check_activity(self.input_info)
 
         elif elapsed_time > begin_outside and elapsed_time < end_outside:
             self.time_label.config(text="00:20:00")
@@ -167,10 +172,18 @@ class MainWindow:
         elif elapsed_time == end_outside:
             self.start_time = now    # reset time
             self.log(text="\t-Break")
-            if self.input_info != (win32api.GetLastInputInfo()):    # if user is active
-                self.alert(status_label_text="Started", title="Back to Work..", message="eyecare")
+            self.alert(status_label_text="Started", title="Back to Work..", message="eyecare")
         
         self.time_label.after(500,self.get_time)
+
+
+    def check_activity(self, prev_activity): # loop to check for activity, start timer when active
+        cur_activity = win32api.GetLastInputInfo()
+
+        if prev_activity == cur_activity:
+            self.time_label.after(1000, self.check_activity, cur_activity)
+        else:
+            self.control()
 
 
     def open_about(self):
@@ -198,7 +211,7 @@ class AboutWindow(MainWindow):
         self.frame = LabelFrame(self.about, text="About")
         self.frame.pack(expand='yes', fill='both',padx=15,pady=15)
 
-        self.credit = Label(self.frame,font=("Calibri",13),text='\nMade by Atharva Baradkar \n Using:\n Figma, Tkinter\nSun Valley Theme\n\n\n\n\n version: v2.0.0')
+        self.credit = Label(self.frame,font=("Calibri",13),text='\nMade by Atharva Baradkar \n Using:\n Figma, Tkinter\nSun Valley Theme\n\n\n\nversion: v3.0.0\nSource: github.com/Leetcodr/eyecare')
         self.credit.pack()
 
 
