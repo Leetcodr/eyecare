@@ -145,7 +145,7 @@ class MainWindow:
         now = time() 
         begin_outside = 1200    # 1200 is no. of seconds in 20 minutes
         end_outside = 1222      # 1222 is 1200 sec + 20 sec break + 2 sec reaction time
-        get_info_before = 2     # get user info 2 second before
+        get_info_before = 120   # get user info 2 minutes before
         elapsed_time = int(now - self.start_time)
 
         # fix start_time
